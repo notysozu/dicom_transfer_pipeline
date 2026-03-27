@@ -9,3 +9,49 @@
 **/certificates/*.cnf
 **/certificates/*.srl
 
+# OS artifacts
+.DS_Store
+.AppleDouble
+._*
+.Spotlight-V100
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+.directory
+
+# Editor state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Dependency folders
+node_modules/
+.venv/
+venv/
+env/
+bower_components/
+.packages/
+
+# Python build and test output
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# General build output
+build/
+dist/
+out/
+coverage/
+.nyc_output/
+
+# Runtime files
+logs/
+*.log
+*.db
