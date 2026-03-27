@@ -10,6 +10,9 @@ param()
 $Script:WindowsVersion = $null
 $Script:WindowsEdition = $null
 $Script:PackageManager = $null
+$Script:RepoUrl = if ($env:REPO_URL) { $env:REPO_URL } else { 'https://github.com/example/dicom_transfer_pipeline.git' }
+$Script:InstallDir = if ($env:INSTALL_DIR) { $env:INSTALL_DIR } else { Join-Path $HOME 'dicom_transfer_pipeline' }
+$Script:ProjectRoot = $null
 
 function Get-WindowsDetails {
   $os = Get-CimInstance -ClassName Win32_OperatingSystem
@@ -63,4 +66,20 @@ function Install-SystemDependencies {
       throw 'No supported Windows package manager was found.'
     }
   }
+}
+
+function Initialize-Repository {
+  if (Test-Path (Join-Path $Script:InstallDir '.git')) {
+    $Script:ProjectRoot = $Script:InstallDir
+    git -C $Script:ProjectRoot pull --ff-only
+    return
+  }
+
+  if ((Test-Path $Script:InstallDir) -and (Get-ChildItem -Force $Script:InstallDir -ErrorAction SilentlyContinue | Select-Object -First 1)) {
+    $Script:ProjectRoot = $Script:InstallDir
+    return
+  }
+
+  git clone $Script:RepoUrl $Script:InstallDir
+  $Script:ProjectRoot = $Script:InstallDir
 }
