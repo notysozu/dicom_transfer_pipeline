@@ -108,20 +108,30 @@ If the frontend build fails, check the troubleshooting section before assuming y
 <!-- AUDIT: Usage lacks a minimal end-to-end example that shows the intended startup flow across both services. -->
 ## Usage
 
-Run the secure DICOM service:
+Start the DICOM service:
 
 ```bash
 cd dicom_guardian
 make run-secure
 ```
 
-Start the backend and frontend independently during development:
+In a second terminal, start the control-plane backend:
 
 ```bash
 cd dicom_ui
 make dev-backend
+```
+
+In a third terminal, start the frontend:
+
+```bash
+cd dicom_ui
 make dev-frontend
 ```
+
+Use the seeded or configured credentials from your local `.env` files to sign in through the UI once the backend and frontend are running.
+
+<!-- TODO: add demo GIF -->
 
 ## Tech Stack
 
