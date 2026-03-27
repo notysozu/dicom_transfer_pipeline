@@ -177,6 +177,11 @@ setup_project_dependencies() {
 }
 
 configure_environment() {
+  if [[ -f "$PROJECT_ROOT/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/.env" ]]; then
+    cp "$PROJECT_ROOT/.env.example" "$PROJECT_ROOT/.env"
+    log_success "Created .env from example"
+  fi
+
   if [[ -f "$PROJECT_ROOT/dicom_guardian/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_guardian/.env" ]]; then
     cp "$PROJECT_ROOT/dicom_guardian/.env.example" "$PROJECT_ROOT/dicom_guardian/.env"
     log_success "Created dicom_guardian/.env from example"
