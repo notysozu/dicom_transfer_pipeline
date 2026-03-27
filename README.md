@@ -19,3 +19,24 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 - Node.js `20` or newer with `npm`
 - OpenSSL tooling for local certificate generation
 - Access to MongoDB for the `dicom_ui` backend runtime profile
+
+## Installation
+
+```bash
+git clone <repository-url>
+cd dicom_transfer_pipeline
+```
+
+Install the Python service dependencies:
+
+```bash
+cd dicom_guardian
+make install-dev
+```
+
+Install the UI workspace dependencies:
+
+```bash
+cd ../dicom_ui
+npm ci
+```
