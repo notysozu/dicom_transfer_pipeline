@@ -1,13 +1,13 @@
 # DICOM Transfer Pipeline
 
-Medical imaging transfer platform for secure DICOM ingestion, operational review, and TLS-protected study workflows.
+Open-source DICOM transfer and medical imaging operations platform for secure ingestion, validation, and TLS-protected study workflows.
 
 ![license](https://img.shields.io/github/license/notysozu/dicom_transfer_pipeline)
 ![last commit](https://img.shields.io/github/last-commit/notysozu/dicom_transfer_pipeline)
 ![python](https://img.shields.io/badge/python-3.11%2B-3776ab)
 ![node](https://img.shields.io/badge/node-20%2B-5fa04e)
 
-DICOM Transfer Pipeline is a monorepo for teams that receive medical imaging studies, validate them, and review transfer activity through a secure web interface. It serves platform engineers, imaging teams, and contributors who maintain DICOM routing and audit workflows across backend and frontend services. The repository keeps the transfer engine and operator-facing control plane together so you can develop, configure, and troubleshoot the full workflow in one place. It pairs a Python DICOM service with a Node.js and React operations UI under one TLS-aware setup path.
+DICOM Transfer Pipeline is a monorepo for teams that receive medical imaging studies, validate DICOM transfers, and review routing activity through a secure web interface. It serves platform engineers, imaging teams, and contributors who maintain DICOM routing, medical imaging workflows, and audit trails across backend and frontend services. The repository keeps the transfer engine and operator-facing control plane together so you can develop, configure, and troubleshoot the full workflow in one place. It pairs a Python DICOM service with a Node.js and React operations UI under one TLS-aware setup path.
 
 ## Features
 
