@@ -13,6 +13,7 @@ $Script:PackageManager = $null
 $Script:RepoUrl = if ($env:REPO_URL) { $env:REPO_URL } else { 'https://github.com/example/dicom_transfer_pipeline.git' }
 $Script:InstallDir = if ($env:INSTALL_DIR) { $env:INSTALL_DIR } else { Join-Path $HOME 'dicom_transfer_pipeline' }
 $Script:ProjectRoot = $null
+$Script:StartTarget = if ($env:START_TARGET) { $env:START_TARGET } else { 'guardian' }
 
 function Get-WindowsDetails {
   $os = Get-CimInstance -ClassName Win32_OperatingSystem
@@ -146,6 +147,41 @@ function Invoke-BuildProcess {
     }
     finally {
       Pop-Location
+    }
+  }
+}
+
+function Start-Application {
+  switch ($Script:StartTarget) {
+    'guardian' {
+      Push-Location (Join-Path $Script:ProjectRoot 'dicom_guardian')
+      try {
+        & .\.venv\Scripts\python.exe -m app.main
+      }
+      finally {
+        Pop-Location
+      }
+    }
+    'ui-backend' {
+      Push-Location (Join-Path $Script:ProjectRoot 'dicom_ui\backend')
+      try {
+        npm start
+      }
+      finally {
+        Pop-Location
+      }
+    }
+    'ui-frontend' {
+      Push-Location (Join-Path $Script:ProjectRoot 'dicom_ui\frontend')
+      try {
+        npm run dev -- --host 0.0.0.0
+      }
+      finally {
+        Pop-Location
+      }
+    }
+    default {
+      throw "Unsupported START_TARGET: $($Script:StartTarget)"
     }
   }
 }
