@@ -6,6 +6,7 @@ PACKAGE_MANAGER=""
 REPO_URL="${REPO_URL:-https://github.com/example/dicom_transfer_pipeline.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/dicom_transfer_pipeline}"
 PROJECT_ROOT=""
+START_TARGET="${START_TARGET:-guardian}"
 
 detect_os() {
   local uname_out
@@ -153,6 +154,33 @@ build_project() {
   fi
 }
 
+start_application() {
+  case "$START_TARGET" in
+    guardian)
+      (
+        cd "$PROJECT_ROOT/dicom_guardian"
+        exec .venv/bin/python -m app.main
+      )
+      ;;
+    ui-backend)
+      (
+        cd "$PROJECT_ROOT/dicom_ui/backend"
+        exec npm start
+      )
+      ;;
+    ui-frontend)
+      (
+        cd "$PROJECT_ROOT/dicom_ui/frontend"
+        exec npm run dev -- --host 0.0.0.0
+      )
+      ;;
+    *)
+      echo "Unsupported START_TARGET: $START_TARGET" >&2
+      return 1
+      ;;
+  esac
+}
+
 main() {
   detect_os
   detect_package_manager
@@ -161,6 +189,7 @@ main() {
   setup_project_dependencies
   configure_environment
   build_project
+  start_application
 }
 
 main "$@"
