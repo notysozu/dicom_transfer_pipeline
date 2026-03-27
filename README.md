@@ -179,7 +179,7 @@ Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](di
 <!-- AUDIT: Project status and known limitations are only implied; a dedicated status section would make expectations clearer. -->
 ## Contributing
 
-Contribution expectations, review guidance, and local workflow notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
+Start with [CONTRIBUTING.md](CONTRIBUTING.md) for branch, review, and validation expectations. Open an issue before large changes, keep pull requests focused on one concern, and run the relevant project checks before asking for review. Contributor conduct is covered by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## License
 
