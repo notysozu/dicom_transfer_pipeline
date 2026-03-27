@@ -2,6 +2,7 @@
 
 OS_FAMILY=""
 OS_NAME=""
+PACKAGE_MANAGER=""
 
 detect_os() {
   local uname_out
@@ -29,8 +30,28 @@ detect_os() {
   esac
 }
 
+detect_package_manager() {
+  if [[ "$OS_FAMILY" == "macos" ]] && command -v brew >/dev/null 2>&1; then
+    PACKAGE_MANAGER="brew"
+    return
+  fi
+
+  if command -v apt-get >/dev/null 2>&1; then
+    PACKAGE_MANAGER="apt"
+  elif command -v dnf >/dev/null 2>&1; then
+    PACKAGE_MANAGER="dnf"
+  elif command -v pacman >/dev/null 2>&1; then
+    PACKAGE_MANAGER="pacman"
+  elif command -v brew >/dev/null 2>&1; then
+    PACKAGE_MANAGER="brew"
+  else
+    PACKAGE_MANAGER="unknown"
+  fi
+}
+
 main() {
   detect_os
+  detect_package_manager
 }
 
 main "$@"
