@@ -22,6 +22,12 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 
 ## Installation
 
+Run the Unix installer directly with `curl`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh | bash
+```
+
 ```bash
 git clone <repository-url>
 cd dicom_transfer_pipeline
