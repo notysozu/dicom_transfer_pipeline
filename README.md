@@ -7,11 +7,11 @@ Medical imaging transfer platform for secure DICOM ingestion, operational review
 ![python](https://img.shields.io/badge/python-3.11%2B-3776ab)
 ![node](https://img.shields.io/badge/node-20%2B-5fa04e)
 
-DICOM Transfer Pipeline is a monorepo for teams that need to receive medical imaging studies, validate them, and review transfer activity through a secure web interface. It is built for platform engineers, imaging teams, and contributors who maintain DICOM routing and audit workflows across backend and frontend services. The repository brings the transfer engine and operator-facing control plane together so you can develop, configure, and troubleshoot the full workflow in one place. It is distinct in that it pairs a Python DICOM service with a Node.js and React operations UI under one TLS-aware setup path.
+DICOM Transfer Pipeline is a monorepo for teams that receive medical imaging studies, validate them, and review transfer activity through a secure web interface. It serves platform engineers, imaging teams, and contributors who maintain DICOM routing and audit workflows across backend and frontend services. The repository keeps the transfer engine and operator-facing control plane together so you can develop, configure, and troubleshoot the full workflow in one place. It pairs a Python DICOM service with a Node.js and React operations UI under one TLS-aware setup path.
 
 ## Features
 
-- Receive and validate DICOM studies through a service designed for secure transfer workflows.
+- Receive and validate DICOM studies through a service built for secure transfer workflows.
 - Review study, transfer, and user-management activity from a web UI built for operations teams.
 - Protect service-to-service and user-facing traffic with TLS-aware local setup and certificate tooling.
 - Run backend and frontend development flows from one repository instead of stitching together separate projects.
@@ -125,13 +125,13 @@ cd dicom_ui
 make dev-frontend
 ```
 
-Use the seeded or configured credentials from your local `.env` files to sign in through the UI once the backend and frontend are running.
+Use the seeded or configured credentials from your local `.env` files to sign in through the UI after the backend and frontend are running.
 
 <!-- TODO: add demo GIF -->
 
 ## Configuration
 
-Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](dicom_guardian/.env.example), and [dicom_ui/.env.example](dicom_ui/.env.example) files before first start.
+Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](dicom_guardian/.env.example), and [dicom_ui/.env.example](dicom_ui/.env.example) files before you start the stack for the first time.
 
 | Variable | Default | Description |
 |---|---|---|
