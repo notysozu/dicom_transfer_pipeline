@@ -83,3 +83,31 @@ function Initialize-Repository {
   git clone $Script:RepoUrl $Script:InstallDir
   $Script:ProjectRoot = $Script:InstallDir
 }
+
+function Install-ProjectDependencies {
+  $guardianDir = Join-Path $Script:ProjectRoot 'dicom_guardian'
+  if (Test-Path $guardianDir) {
+    Push-Location $guardianDir
+    try {
+      if (-not (Test-Path '.venv')) {
+        python -m venv .venv
+      }
+      & .\.venv\Scripts\python.exe -m pip install --upgrade pip
+      & .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+    }
+    finally {
+      Pop-Location
+    }
+  }
+
+  $uiDir = Join-Path $Script:ProjectRoot 'dicom_ui'
+  if (Test-Path $uiDir) {
+    Push-Location $uiDir
+    try {
+      npm ci
+    }
+    finally {
+      Pop-Location
+    }
+  }
+}
