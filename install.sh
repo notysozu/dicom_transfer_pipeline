@@ -49,9 +49,48 @@ detect_package_manager() {
   fi
 }
 
+install_missing_packages() {
+  local packages=("$@")
+
+  case "$PACKAGE_MANAGER" in
+    apt)
+      sudo apt-get update
+      sudo apt-get install -y "${packages[@]}"
+      ;;
+    dnf)
+      sudo dnf install -y "${packages[@]}"
+      ;;
+    pacman)
+      sudo pacman -Sy --noconfirm "${packages[@]}"
+      ;;
+    brew)
+      brew install "${packages[@]}"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+install_system_dependencies() {
+  local missing=()
+
+  command -v git >/dev/null 2>&1 || missing+=("git")
+  command -v openssl >/dev/null 2>&1 || missing+=("openssl")
+  command -v curl >/dev/null 2>&1 || missing+=("curl")
+  command -v wget >/dev/null 2>&1 || missing+=("wget")
+  command -v python3 >/dev/null 2>&1 || missing+=("python3")
+  command -v npm >/dev/null 2>&1 || missing+=("npm")
+
+  if [[ "${#missing[@]}" -gt 0 ]]; then
+    install_missing_packages "${missing[@]}"
+  fi
+}
+
 main() {
   detect_os
   detect_package_manager
+  install_system_dependencies
 }
 
 main "$@"
