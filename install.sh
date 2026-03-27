@@ -126,12 +126,27 @@ setup_project_dependencies() {
   fi
 }
 
+configure_environment() {
+  if [[ -f "$PROJECT_ROOT/dicom_guardian/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_guardian/.env" ]]; then
+    cp "$PROJECT_ROOT/dicom_guardian/.env.example" "$PROJECT_ROOT/dicom_guardian/.env"
+  fi
+
+  if [[ -f "$PROJECT_ROOT/dicom_ui/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_ui/.env" ]]; then
+    cp "$PROJECT_ROOT/dicom_ui/.env.example" "$PROJECT_ROOT/dicom_ui/.env"
+  fi
+
+  if [[ -f "$PROJECT_ROOT/dicom_ui/frontend/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_ui/frontend/.env" ]]; then
+    cp "$PROJECT_ROOT/dicom_ui/frontend/.env.example" "$PROJECT_ROOT/dicom_ui/frontend/.env"
+  fi
+}
+
 main() {
   detect_os
   detect_package_manager
   install_system_dependencies
   prepare_repository
   setup_project_dependencies
+  configure_environment
 }
 
 main "$@"
