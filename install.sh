@@ -140,6 +140,19 @@ configure_environment() {
   fi
 }
 
+build_project() {
+  if [[ -x "$PROJECT_ROOT/scripts/generate_tls_certs.sh" ]]; then
+    "$PROJECT_ROOT/scripts/generate_tls_certs.sh"
+  fi
+
+  if [[ -d "$PROJECT_ROOT/dicom_ui" ]]; then
+    (
+      cd "$PROJECT_ROOT/dicom_ui"
+      npm run build --workspace frontend
+    )
+  fi
+}
+
 main() {
   detect_os
   detect_package_manager
@@ -147,6 +160,7 @@ main() {
   prepare_repository
   setup_project_dependencies
   configure_environment
+  build_project
 }
 
 main "$@"
