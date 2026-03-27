@@ -1,6 +1,9 @@
 # DICOM Transfer Pipeline
 
-![repository status](https://img.shields.io/badge/status-active%20baseline-0a7ea4)
+Medical imaging transfer platform for secure DICOM ingestion, operational review, and TLS-protected study workflows.
+
+![license](https://img.shields.io/github/license/notysozu/dicom_transfer_pipeline)
+![last commit](https://img.shields.io/github/last-commit/notysozu/dicom_transfer_pipeline)
 ![python](https://img.shields.io/badge/python-3.11%2B-3776ab)
 ![node](https://img.shields.io/badge/node-20%2B-5fa04e)
 
