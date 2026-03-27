@@ -150,9 +150,14 @@ Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](di
 
 ## Tech Stack
 
-- `dicom_guardian`: Python, FastAPI, `pydicom`, `pynetdicom`, SQLite, TLS tooling
-- `dicom_ui` backend: Node.js, Express, Mongoose, JWT, bcrypt
-- `dicom_ui` frontend: React, Vite, React Router
+| Area | Tools |
+|---|---|
+| Core runtimes | Python 3.11+, Node.js 20+ |
+| Backend services | FastAPI, Uvicorn, Express, Mongoose |
+| DICOM and security | `pydicom`, `pynetdicom`, OpenSSL, JWT, bcrypt |
+| Frontend | React, Vite, React Router |
+| Storage and state | SQLite for `dicom_guardian`, MongoDB for `dicom_ui` |
+| Dev tooling | `make`, `pip`, `npm`, `pytest`, `ruff`, `mypy` |
 
 <!-- AUDIT: README is missing a configuration reference table for the environment variables already documented elsewhere in the repo. -->
 <!-- AUDIT: Repository structure is not obvious from the root README and needs an annotated directory overview for first-time contributors. -->
