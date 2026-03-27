@@ -13,10 +13,11 @@ DICOM Transfer Pipeline is a monorepo for teams that need to receive medical ima
 <!-- AUDIT: Features mix implementation details with benefits and omit why the workflow matters to operators or contributors. -->
 ## Features
 
-- Secure DICOM ingestion and forwarding pipeline with TLS-aware runtime settings
-- HTTPS control-plane backend with authentication, RBAC, and audit-oriented models
-- React dashboard frontend for login, study review, transfer tracking, and user management
-- Local developer tooling for Python and Node.js workflows through subproject `Makefile` targets
+- Receive and validate DICOM studies through a service designed for secure transfer workflows.
+- Review study, transfer, and user-management activity from a web UI built for operations teams.
+- Protect service-to-service and user-facing traffic with TLS-aware local setup and certificate tooling.
+- Run backend and frontend development flows from one repository instead of stitching together separate projects.
+- Bootstrap common Python and Node.js tasks with documented `Makefile` and workspace commands.
 
 ## Prerequisites
 
