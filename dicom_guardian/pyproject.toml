@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dicom-guardian"
+version = "0.1.0"
+description = "Secure DICOM transfer and validation service"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "DICOM Platform Engineering" }
+]
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn>=0.30.0",
+  "pydicom>=2.4.0",
+  "pynetdicom>=2.0.2",
+  "cryptography>=42.0.0"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

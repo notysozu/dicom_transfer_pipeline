@@ -1,0 +1,5 @@
+fastapi==0.115.0
+uvicorn==0.30.6
+pydicom==2.4.4
+pynetdicom==2.0.2
+cryptography==42.0.8

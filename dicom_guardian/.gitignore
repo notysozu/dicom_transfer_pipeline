@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# Environment files
+.env
+
+# Logs and runtime
+*.log
+
+# Database
+*.db
+
+# Data directories (runtime artifacts)
+data/incoming/
+data/processed/
+data/rejected/
+
+# TLS private material
+certificates/*.pem
+certificates/*.key
+
+# TLS generation intermediates
+certificates/*.csr
+certificates/*.cnf
+certificates/*.srl
