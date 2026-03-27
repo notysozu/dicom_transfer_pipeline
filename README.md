@@ -67,3 +67,7 @@ make dev-frontend
 ## Contributing
 
 Contribution expectations, review guidance, and local workflow notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+This repository is available under the [MIT License](LICENSE).
