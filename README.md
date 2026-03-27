@@ -63,3 +63,7 @@ make dev-frontend
 - `dicom_guardian`: Python, FastAPI, `pydicom`, `pynetdicom`, SQLite, TLS tooling
 - `dicom_ui` backend: Node.js, Express, Mongoose, JWT, bcrypt
 - `dicom_ui` frontend: React, Vite, React Router
+
+## Contributing
+
+Contribution expectations, review guidance, and local workflow notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
