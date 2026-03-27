@@ -55,22 +55,29 @@ Before using pipe-to-shell installers, review the raw scripts:
 ### Manual Setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/notysozu/dicom_transfer_pipeline.git
 cd dicom_transfer_pipeline
 ```
 
-Install the Python service dependencies:
+Generate local TLS materials before first run:
+
+```bash
+./scripts/generate_tls_certs.sh
+```
+
+Install the Python service dependencies and bootstrap its virtual environment:
 
 ```bash
 cd dicom_guardian
 make install-dev
 ```
 
-Install the UI workspace dependencies:
+Install the UI workspace dependencies and build the frontend:
 
 ```bash
 cd ../dicom_ui
 npm ci
+npm run build --workspace frontend
 ```
 
 ## Usage
