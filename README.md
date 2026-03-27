@@ -28,6 +28,12 @@ Run the Unix installer directly with `curl`:
 curl -fsSL https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh | bash
 ```
 
+Or use `wget`:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh | bash
+```
+
 ```bash
 git clone <repository-url>
 cd dicom_transfer_pipeline
