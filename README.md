@@ -22,6 +22,10 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 
 ## Installation
 
+Choose either an automated installer for your platform or the manual setup flow below.
+
+### Automated Installers
+
 Run the Unix installer directly with `curl`:
 
 ```bash
@@ -45,6 +49,8 @@ Before using pipe-to-shell installers, review the raw scripts:
 - `install.sh`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh>
 - `install.ps1`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.ps1>
 - Audit the scripts locally and prefer manual execution in regulated or production-adjacent environments.
+
+### Manual Setup
 
 ```bash
 git clone <repository-url>
