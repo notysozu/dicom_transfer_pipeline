@@ -1,0 +1,11 @@
+# Sensitive files
+.env
+.env.*
+!.env.example
+!.env.*.example
+**/certificates/*.pem
+**/certificates/*.key
+**/certificates/*.csr
+**/certificates/*.cnf
+**/certificates/*.srl
+
