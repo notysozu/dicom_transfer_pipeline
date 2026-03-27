@@ -4,8 +4,10 @@
 ![python](https://img.shields.io/badge/python-3.11%2B-3776ab)
 ![node](https://img.shields.io/badge/node-20%2B-5fa04e)
 
+<!-- AUDIT: Header lacks verifiable repository metadata such as license or last-commit badges, and the opening tagline could be sharper for discoverability. -->
 This repository combines `dicom_guardian`, a Python service for secure DICOM ingestion and transfer, with `dicom_ui`, a Node.js and React control plane for operators who need to monitor studies, transfers, and audit activity over TLS-protected interfaces.
 
+<!-- AUDIT: Features mix implementation details with benefits and omit why the workflow matters to operators or contributors. -->
 ## Features
 
 - Secure DICOM ingestion and forwarding pipeline with TLS-aware runtime settings
@@ -22,6 +24,7 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 - On Linux, install scripts expect one of `apt`, `dnf`, or `pacman`; on macOS they use Homebrew; on Windows they use `winget` or Chocolatey
 - `git`, `curl`, and `wget` are used by the automated installer paths
 
+<!-- AUDIT: Installation is useful but does not end with a concrete verification step and does not explain the known frontend build limitation inline. -->
 ## Installation
 
 Choose either an automated installer for your platform or the manual setup flow below.
@@ -82,6 +85,7 @@ npm ci
 npm run build --workspace frontend
 ```
 
+<!-- AUDIT: Usage lacks a minimal end-to-end example that shows the intended startup flow across both services. -->
 ## Usage
 
 Run the secure DICOM service:
@@ -105,6 +109,9 @@ make dev-frontend
 - `dicom_ui` backend: Node.js, Express, Mongoose, JWT, bcrypt
 - `dicom_ui` frontend: React, Vite, React Router
 
+<!-- AUDIT: README is missing a configuration reference table for the environment variables already documented elsewhere in the repo. -->
+<!-- AUDIT: Repository structure is not obvious from the root README and needs an annotated directory overview for first-time contributors. -->
+<!-- AUDIT: Project status and known limitations are only implied; a dedicated status section would make expectations clearer. -->
 ## Contributing
 
 Contribution expectations, review guidance, and local workflow notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
