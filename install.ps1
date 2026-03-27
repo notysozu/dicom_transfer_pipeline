@@ -111,3 +111,23 @@ function Install-ProjectDependencies {
     }
   }
 }
+
+function Initialize-Environment {
+  $guardianExample = Join-Path $Script:ProjectRoot 'dicom_guardian\.env.example'
+  $guardianEnv = Join-Path $Script:ProjectRoot 'dicom_guardian\.env'
+  if ((Test-Path $guardianExample) -and (-not (Test-Path $guardianEnv))) {
+    Copy-Item $guardianExample $guardianEnv
+  }
+
+  $uiExample = Join-Path $Script:ProjectRoot 'dicom_ui\.env.example'
+  $uiEnv = Join-Path $Script:ProjectRoot 'dicom_ui\.env'
+  if ((Test-Path $uiExample) -and (-not (Test-Path $uiEnv))) {
+    Copy-Item $uiExample $uiEnv
+  }
+
+  $frontendExample = Join-Path $Script:ProjectRoot 'dicom_ui\frontend\.env.example'
+  $frontendEnv = Join-Path $Script:ProjectRoot 'dicom_ui\frontend\.env'
+  if ((Test-Path $frontendExample) -and (-not (Test-Path $frontendEnv))) {
+    Copy-Item $frontendExample $frontendEnv
+  }
+}
