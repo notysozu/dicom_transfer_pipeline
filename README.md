@@ -57,3 +57,9 @@ cd dicom_ui
 make dev-backend
 make dev-frontend
 ```
+
+## Tech Stack
+
+- `dicom_guardian`: Python, FastAPI, `pydicom`, `pynetdicom`, SQLite, TLS tooling
+- `dicom_ui` backend: Node.js, Express, Mongoose, JWT, bcrypt
+- `dicom_ui` frontend: React, Vite, React Router
