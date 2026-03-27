@@ -49,6 +49,8 @@ Before using pipe-to-shell installers, review the raw scripts:
 - `install.sh`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh>
 - `install.ps1`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.ps1>
 - Audit the scripts locally and prefer manual execution in regulated or production-adjacent environments.
+- Override installer behavior with environment variables such as `INSTALL_DIR`, `REPO_URL`, and `START_TARGET`.
+- Example: `INSTALL_DIR="$HOME/apps/dicom-transfer" START_TARGET=ui-backend curl -fsSL https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh | bash`
 
 ### Manual Setup
 
