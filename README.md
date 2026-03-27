@@ -159,6 +159,21 @@ Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](di
 | Storage and state | SQLite for `dicom_guardian`, MongoDB for `dicom_ui` |
 | Dev tooling | `make`, `pip`, `npm`, `pytest`, `ruff`, `mypy` |
 
+## Project Structure
+
+```text
+.
+├── dicom_guardian/   # Python DICOM service, FastAPI endpoints, and database helpers
+├── dicom_ui/         # Node.js workspace with backend and frontend applications
+│   ├── backend/      # Express API, auth, routes, models, and integration services
+│   └── frontend/     # React dashboard, pages, client services, and styles
+├── scripts/          # Shared repository scripts such as local TLS certificate generation
+├── .github/          # Repository analysis notes and future GitHub automation files
+├── .env.example      # Shared installer and local environment placeholders
+├── install.sh        # Unix installer and bootstrap script
+└── install.ps1       # Windows PowerShell installer and bootstrap script
+```
+
 <!-- AUDIT: README is missing a configuration reference table for the environment variables already documented elsewhere in the repo. -->
 <!-- AUDIT: Repository structure is not obvious from the root README and needs an annotated directory overview for first-time contributors. -->
 <!-- AUDIT: Project status and known limitations are only implied; a dedicated status section would make expectations clearer. -->
