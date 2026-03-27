@@ -4,7 +4,7 @@ set -euo pipefail
 OS_FAMILY=""
 OS_NAME=""
 PACKAGE_MANAGER=""
-REPO_URL="${REPO_URL:-https://github.com/example/dicom_transfer_pipeline.git}"
+REPO_URL="${REPO_URL:-https://github.com/notysozu/dicom_transfer_pipeline.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/dicom_transfer_pipeline}"
 PROJECT_ROOT=""
 START_TARGET="${START_TARGET:-guardian}"
