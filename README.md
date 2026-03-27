@@ -133,6 +133,21 @@ Use the seeded or configured credentials from your local `.env` files to sign in
 
 <!-- TODO: add demo GIF -->
 
+## Configuration
+
+Review the root [`.env.example`](.env.example), [dicom_guardian/.env.example](dicom_guardian/.env.example), and [dicom_ui/.env.example](dicom_ui/.env.example) files before first start.
+
+| Variable | Default | Description |
+|---|---|---|
+| `START_TARGET` | `guardian` | Selects which app the install scripts start by default. |
+| `API_PORT` | `8443` | Exposes the `dicom_guardian` FastAPI service. |
+| `DICOM_PORT` | `11112` | Exposes the DICOM listener for inbound studies. |
+| `UI_BACKEND_PORT` | `9443` | Exposes the `dicom_ui` backend over HTTPS. |
+| `MONGODB_URI` | `mongodb://localhost:27017/dicom_ui` | Required MongoDB connection string for the UI backend. |
+| `JWT_SECRET` | none | Required signing secret for authentication tokens. |
+| `GUARDIAN_BASE_URL` | `https://127.0.0.1:8443` | Connects the UI backend to `dicom_guardian`. |
+| `VITE_API_BASE_URL` | `https://127.0.0.1:9443/api` | Points the frontend at the local backend API. |
+
 ## Tech Stack
 
 - `dicom_guardian`: Python, FastAPI, `pydicom`, `pynetdicom`, SQLite, TLS tooling
