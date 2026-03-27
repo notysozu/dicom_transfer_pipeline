@@ -106,11 +106,32 @@ prepare_repository() {
   PROJECT_ROOT="$INSTALL_DIR"
 }
 
+setup_project_dependencies() {
+  if [[ -d "$PROJECT_ROOT/dicom_guardian" ]]; then
+    (
+      cd "$PROJECT_ROOT/dicom_guardian"
+      if [[ ! -d .venv ]]; then
+        python3 -m venv .venv
+      fi
+      .venv/bin/pip install --upgrade pip
+      .venv/bin/pip install -r requirements-dev.txt
+    )
+  fi
+
+  if [[ -d "$PROJECT_ROOT/dicom_ui" ]]; then
+    (
+      cd "$PROJECT_ROOT/dicom_ui"
+      npm ci
+    )
+  fi
+}
+
 main() {
   detect_os
   detect_package_manager
   install_system_dependencies
   prepare_repository
+  setup_project_dependencies
 }
 
 main "$@"
