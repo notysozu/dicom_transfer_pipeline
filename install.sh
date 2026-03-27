@@ -3,6 +3,9 @@
 OS_FAMILY=""
 OS_NAME=""
 PACKAGE_MANAGER=""
+REPO_URL="${REPO_URL:-https://github.com/example/dicom_transfer_pipeline.git}"
+INSTALL_DIR="${INSTALL_DIR:-$HOME/dicom_transfer_pipeline}"
+PROJECT_ROOT=""
 
 detect_os() {
   local uname_out
@@ -87,10 +90,27 @@ install_system_dependencies() {
   fi
 }
 
+prepare_repository() {
+  if [[ -d "$INSTALL_DIR/.git" ]]; then
+    PROJECT_ROOT="$INSTALL_DIR"
+    git -C "$PROJECT_ROOT" pull --ff-only
+    return
+  fi
+
+  if [[ -d "$INSTALL_DIR" ]] && [[ ! -z "$(find "$INSTALL_DIR" -mindepth 1 -maxdepth 1 2>/dev/null)" ]]; then
+    PROJECT_ROOT="$INSTALL_DIR"
+    return
+  fi
+
+  git clone "$REPO_URL" "$INSTALL_DIR"
+  PROJECT_ROOT="$INSTALL_DIR"
+}
+
 main() {
   detect_os
   detect_package_manager
   install_system_dependencies
+  prepare_repository
 }
 
 main "$@"
