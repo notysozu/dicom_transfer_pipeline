@@ -12,3 +12,10 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 - HTTPS control-plane backend with authentication, RBAC, and audit-oriented models
 - React dashboard frontend for login, study review, transfer tracking, and user management
 - Local developer tooling for Python and Node.js workflows through subproject `Makefile` targets
+
+## Prerequisites
+
+- Python `3.11` or newer
+- Node.js `20` or newer with `npm`
+- OpenSSL tooling for local certificate generation
+- Access to MongoDB for the `dicom_ui` backend runtime profile
