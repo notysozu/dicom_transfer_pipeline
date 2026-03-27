@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 OS_FAMILY=""
 OS_NAME=""
@@ -7,6 +8,41 @@ REPO_URL="${REPO_URL:-https://github.com/example/dicom_transfer_pipeline.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/dicom_transfer_pipeline}"
 PROJECT_ROOT=""
 START_TARGET="${START_TARGET:-guardian}"
+USE_COLOR=0
+
+configure_output() {
+  if [[ -t 1 ]] && [[ "${NO_COLOR:-0}" != "1" ]]; then
+    USE_COLOR=1
+  fi
+}
+
+log_info() {
+  if [[ "$USE_COLOR" -eq 1 ]]; then
+    printf '\033[1;34m→\033[0m %s\n' "$1"
+  else
+    printf '-> %s\n' "$1"
+  fi
+}
+
+log_success() {
+  if [[ "$USE_COLOR" -eq 1 ]]; then
+    printf '\033[1;32m✓\033[0m %s\n' "$1"
+  else
+    printf '[ok] %s\n' "$1"
+  fi
+}
+
+log_error() {
+  if [[ "$USE_COLOR" -eq 1 ]]; then
+    printf '\033[1;31m✗\033[0m %s\n' "$1" >&2
+  else
+    printf '[error] %s\n' "$1" >&2
+  fi
+}
+
+on_error() {
+  log_error "install.sh failed on line $1"
+}
 
 detect_os() {
   local uname_out
@@ -56,6 +92,8 @@ detect_package_manager() {
 install_missing_packages() {
   local packages=("$@")
 
+  log_info "Installing system packages with $PACKAGE_MANAGER: ${packages[*]}"
+
   case "$PACKAGE_MANAGER" in
     apt)
       sudo apt-get update
@@ -88,27 +126,35 @@ install_system_dependencies() {
 
   if [[ "${#missing[@]}" -gt 0 ]]; then
     install_missing_packages "${missing[@]}"
+  else
+    log_success "System dependencies already available"
   fi
 }
 
 prepare_repository() {
   if [[ -d "$INSTALL_DIR/.git" ]]; then
     PROJECT_ROOT="$INSTALL_DIR"
+    log_info "Updating existing repository in $PROJECT_ROOT"
     git -C "$PROJECT_ROOT" pull --ff-only
+    log_success "Repository updated"
     return
   fi
 
   if [[ -d "$INSTALL_DIR" ]] && [[ ! -z "$(find "$INSTALL_DIR" -mindepth 1 -maxdepth 1 2>/dev/null)" ]]; then
     PROJECT_ROOT="$INSTALL_DIR"
+    log_info "Using existing directory at $PROJECT_ROOT"
     return
   fi
 
+  log_info "Cloning repository into $INSTALL_DIR"
   git clone "$REPO_URL" "$INSTALL_DIR"
   PROJECT_ROOT="$INSTALL_DIR"
+  log_success "Repository cloned"
 }
 
 setup_project_dependencies() {
   if [[ -d "$PROJECT_ROOT/dicom_guardian" ]]; then
+    log_info "Installing Python dependencies"
     (
       cd "$PROJECT_ROOT/dicom_guardian"
       if [[ ! -d .venv ]]; then
@@ -117,44 +163,55 @@ setup_project_dependencies() {
       .venv/bin/pip install --upgrade pip
       .venv/bin/pip install -r requirements-dev.txt
     )
+    log_success "Python environment ready"
   fi
 
   if [[ -d "$PROJECT_ROOT/dicom_ui" ]]; then
+    log_info "Installing Node.js workspace dependencies"
     (
       cd "$PROJECT_ROOT/dicom_ui"
       npm ci
     )
+    log_success "Node.js dependencies ready"
   fi
 }
 
 configure_environment() {
   if [[ -f "$PROJECT_ROOT/dicom_guardian/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_guardian/.env" ]]; then
     cp "$PROJECT_ROOT/dicom_guardian/.env.example" "$PROJECT_ROOT/dicom_guardian/.env"
+    log_success "Created dicom_guardian/.env from example"
   fi
 
   if [[ -f "$PROJECT_ROOT/dicom_ui/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_ui/.env" ]]; then
     cp "$PROJECT_ROOT/dicom_ui/.env.example" "$PROJECT_ROOT/dicom_ui/.env"
+    log_success "Created dicom_ui/.env from example"
   fi
 
   if [[ -f "$PROJECT_ROOT/dicom_ui/frontend/.env.example" ]] && [[ ! -f "$PROJECT_ROOT/dicom_ui/frontend/.env" ]]; then
     cp "$PROJECT_ROOT/dicom_ui/frontend/.env.example" "$PROJECT_ROOT/dicom_ui/frontend/.env"
+    log_success "Created dicom_ui/frontend/.env from example"
   fi
 }
 
 build_project() {
   if [[ -x "$PROJECT_ROOT/scripts/generate_tls_certs.sh" ]]; then
+    log_info "Generating local TLS certificates"
     "$PROJECT_ROOT/scripts/generate_tls_certs.sh"
+    log_success "TLS certificates generated"
   fi
 
   if [[ -d "$PROJECT_ROOT/dicom_ui" ]]; then
+    log_info "Building frontend workspace"
     (
       cd "$PROJECT_ROOT/dicom_ui"
       npm run build --workspace frontend
     )
+    log_success "Frontend build completed"
   fi
 }
 
 start_application() {
+  log_info "Starting application target: $START_TARGET"
   case "$START_TARGET" in
     guardian)
       (
@@ -182,6 +239,8 @@ start_application() {
 }
 
 main() {
+  trap 'on_error $LINENO' ERR
+  configure_output
   detect_os
   detect_package_manager
   install_system_dependencies
