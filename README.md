@@ -34,6 +34,12 @@ Or use `wget`:
 wget -qO- https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh | bash
 ```
 
+On Windows PowerShell:
+
+```powershell
+iwr https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.ps1 -UseBasicParsing | iex
+```
+
 ```bash
 git clone <repository-url>
 cd dicom_transfer_pipeline
