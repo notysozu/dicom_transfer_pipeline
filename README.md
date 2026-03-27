@@ -112,3 +112,10 @@ Contribution expectations, review guidance, and local workflow notes live in [CO
 ## License
 
 This repository is available under the [MIT License](LICENSE).
+
+## Troubleshooting
+
+- If `npm ci` fails while installing `bcrypt`, confirm your Node.js version and native build tooling, then retry the workspace install.
+- If the frontend build fails, inspect `dicom_ui/frontend/src/pages/DashboardPage.jsx` first; the repository currently has a known syntax issue there.
+- If installer package detection fails, install the required runtimes manually and rerun the script.
+- Review generated `.env` files before first start and replace placeholder secrets with environment-specific values.
