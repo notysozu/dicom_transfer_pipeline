@@ -40,6 +40,12 @@ On Windows PowerShell:
 iwr https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.ps1 -UseBasicParsing | iex
 ```
 
+Before using pipe-to-shell installers, review the raw scripts:
+
+- `install.sh`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.sh>
+- `install.ps1`: <https://raw.githubusercontent.com/notysozu/dicom_transfer_pipeline/main/install.ps1>
+- Audit the scripts locally and prefer manual execution in regulated or production-adjacent environments.
+
 ```bash
 git clone <repository-url>
 cd dicom_transfer_pipeline
