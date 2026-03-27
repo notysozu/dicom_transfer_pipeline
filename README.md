@@ -21,12 +21,16 @@ DICOM Transfer Pipeline is a monorepo for teams that need to receive medical ima
 
 ## Prerequisites
 
-- Python `3.11` or newer
-- Node.js `20` or newer with `npm`
-- OpenSSL tooling for local certificate generation
-- Access to MongoDB for the `dicom_ui` backend runtime profile
-- On Linux, install scripts expect one of `apt`, `dnf`, or `pacman`; on macOS they use Homebrew; on Windows they use `winget` or Chocolatey
-- `git`, `curl`, and `wget` are used by the automated installer paths
+- [Python](https://www.python.org/downloads/) `3.11` or newer
+- [Node.js](https://nodejs.org/) `20` or newer, including `npm`
+- [OpenSSL](https://www.openssl.org/source/) for local certificate generation
+- [Git](https://git-scm.com/downloads) for cloning and updating the repository
+- A reachable MongoDB instance for the `dicom_ui` backend runtime profile
+- One supported package manager for automated setup:
+  - Linux: `apt`, `dnf`, or `pacman`
+  - macOS: `brew`
+  - Windows: `winget` or Chocolatey
+- `curl` or `wget` if you want to use the one-command Unix installers
 
 <!-- AUDIT: Installation is useful but does not end with a concrete verification step and does not explain the known frontend build limitation inline. -->
 ## Installation
