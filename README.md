@@ -72,9 +72,10 @@ git clone https://github.com/notysozu/dicom_transfer_pipeline.git
 cd dicom_transfer_pipeline
 ```
 
-Generate local TLS materials before first run:
+Copy the shared template and generate local TLS materials:
 
 ```bash
+cp .env.example .env
 ./scripts/generate_tls_certs.sh
 ```
 
@@ -83,6 +84,7 @@ Install the Python service dependencies and bootstrap its virtual environment:
 ```bash
 cd dicom_guardian
 make install-dev
+cp .env.example .env
 ```
 
 Install the UI workspace dependencies and build the frontend:
@@ -92,6 +94,16 @@ cd ../dicom_ui
 npm ci
 npm run build --workspace frontend
 ```
+
+Verify the local toolchain is ready:
+
+```bash
+cd ..
+python3 --version
+node --version
+```
+
+If the frontend build fails, check the troubleshooting section before assuming your local setup is wrong.
 
 <!-- AUDIT: Usage lacks a minimal end-to-end example that shows the intended startup flow across both services. -->
 ## Usage
