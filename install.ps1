@@ -147,6 +147,13 @@ function Install-ProjectDependencies {
 }
 
 function Initialize-Environment {
+  $rootExample = Join-Path $Script:ProjectRoot '.env.example'
+  $rootEnv = Join-Path $Script:ProjectRoot '.env'
+  if ((Test-Path $rootExample) -and (-not (Test-Path $rootEnv))) {
+    Copy-Item $rootExample $rootEnv
+    Write-SuccessMessage 'Created .env from example'
+  }
+
   $guardianExample = Join-Path $Script:ProjectRoot 'dicom_guardian\.env.example'
   $guardianEnv = Join-Path $Script:ProjectRoot 'dicom_guardian\.env'
   if ((Test-Path $guardianExample) -and (-not (Test-Path $guardianEnv))) {
