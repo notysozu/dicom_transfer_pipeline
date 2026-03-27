@@ -131,3 +131,21 @@ function Initialize-Environment {
     Copy-Item $frontendExample $frontendEnv
   }
 }
+
+function Invoke-BuildProcess {
+  $tlsScript = Join-Path $Script:ProjectRoot 'scripts\generate_tls_certs.sh'
+  if (Test-Path $tlsScript) {
+    bash $tlsScript
+  }
+
+  $uiDir = Join-Path $Script:ProjectRoot 'dicom_ui'
+  if (Test-Path $uiDir) {
+    Push-Location $uiDir
+    try {
+      npm run build --workspace frontend
+    }
+    finally {
+      Pop-Location
+    }
+  }
+}
