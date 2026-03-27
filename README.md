@@ -40,3 +40,20 @@ Install the UI workspace dependencies:
 cd ../dicom_ui
 npm ci
 ```
+
+## Usage
+
+Run the secure DICOM service:
+
+```bash
+cd dicom_guardian
+make run-secure
+```
+
+Start the backend and frontend independently during development:
+
+```bash
+cd dicom_ui
+make dev-backend
+make dev-frontend
+```
