@@ -19,6 +19,8 @@ This repository combines `dicom_guardian`, a Python service for secure DICOM ing
 - Node.js `20` or newer with `npm`
 - OpenSSL tooling for local certificate generation
 - Access to MongoDB for the `dicom_ui` backend runtime profile
+- On Linux, install scripts expect one of `apt`, `dnf`, or `pacman`; on macOS they use Homebrew; on Windows they use `winget` or Chocolatey
+- `git`, `curl`, and `wget` are used by the automated installer paths
 
 ## Installation
 
